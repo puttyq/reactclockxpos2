@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - iit-tf-app1
+name: Build and deploy Node.js app to Azure Web App - iit-tf-app1 and iit-tf-app2
 
 on:
   push:
@@ -26,10 +26,18 @@ jobs:
         npm run build --if-present
         npm run test --if-present
 
-    - name: 'Deploy to Azure Web App'
+    - name: 'Deploy to Azure Web App1'
       uses: azure/webapps-deploy@v1
       with:
         app-name: 'iit-tf-app1'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7a02473779b04575b3be1587ca1ed37a }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_APP1 }}
         package: .
+
+    - name: 'Deploy to Azure Web App2'
+      uses: azure/webapps-deploy@v1
+      with:
+        app-name: 'iit-tf-app2'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_APP2 }}
+        package: .        
